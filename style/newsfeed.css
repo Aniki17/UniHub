@@ -1,35 +1,53 @@
 body {
     font-family: Arial, sans-serif;
-    max-width: 600px;
+    max-width: 800px; /* Increased width for better spacing */
     margin: auto;
-    padding: 20px;
+    padding: 30px;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('../images/newsfeedbackground.jpg');
+    background-repeat: repeat; /* This makes the image repeat */
+    background-size: auto; /* Ensures it repeats naturally */
 }
 .article {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-bottom: 10px;
+    background: linear-gradient(to right, #faf3e0, #e1c699); /* Elegant and premium gradient */
+    border-radius: 15px;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+    padding: 20px; /* Reduced padding slightly */
+    margin-bottom: 12px;
     cursor: pointer;
-    background: #f9f9f9;
-    transition: transform 0.2s;
-    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column; /* Ensure title and content align properly */
+    align-items: flex-start;
+    font-family: 'Georgia', serif;
+    font-size: 1.3em; /* Adjusted text size slightly */
+    border: 2px solid #b38b6d; /* Muted gold border */
+    color: #3e2723; /* Dark brown text for contrast */
 }
 .article:hover {
     transform: scale(1.02);
+    box-shadow: 6px 6px 22px rgba(0, 0, 0, 0.25);
 }
 .article-content {
     display: none;
-    padding-top: 10px;
+    padding-top: 12px;
+    font-size: 1.1em; /* Adjusted content text size */
+    border: 2px solid #b38b6d; /* Muted gold border */
+    padding: 10px;
+    color: #3e2723; /* Dark brown text */
 }
 .remove-btn {
     background: red;
     color: white;
     border: none;
-    padding: 5px;
+    padding: 8px;
     cursor: pointer;
     margin-left: 10px;
+    border-radius: 5px;
+    transition: background 0.2s;
+}
+.remove-btn:hover {
+    background: darkred;
 }
 .modal {
     display: none;
@@ -43,16 +61,61 @@ body {
     align-items: center;
 }
 .modal-content {
-    background: white;
-    padding: 20px;
-    max-width: 500px;
+    background: linear-gradient(to right, #faf3e0, #e1c699); /* Elegant background */
+    padding: 25px; /* Adjusted padding for balance */
+    max-width: 650px; /* Adjusted modal width */
     text-align: center;
+    border-radius: 12px;
+    font-size: 1.2em; /* Adjusted modal text size */
+    border: 2px solid #b38b6d; /* Muted gold border */
+    color: #3e2723; /* Dark brown text */
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
 }
 .close-btn {
     margin-top: 10px;
     background: red;
     color: white;
     border: none;
-    padding: 5px 10px;
+    padding: 10px 14px;
     cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Title and Content Input Fields */
+#title, #content {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 2px solid #b38b6d; /* Muted gold border */
+    border-radius: 8px;
+    font-size: 1.2em;
+    font-family: 'Georgia', serif;
+    background: #faf3e0; /* Light elegant background */
+    color: #3e2723; /* Dark brown text */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    resize: vertical; /* Allow vertical resizing */
+    transition: all 0.3s ease-in-out;
+}
+#title:focus, #content:focus {
+    border-color: #8c5a2b;
+    box-shadow: 0 0 10px rgba(140, 90, 43, 0.5);
+}
+
+/* Elegant and Premium Button */
+button {
+    background: linear-gradient(to right, #b38b6d, #8c5a2b); /* Gold gradient */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1.2em;
+    font-family: 'Georgia', serif;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.2);
+}
+button:hover {
+    background: linear-gradient(to right, #8c5a2b, #5a3821);
+    transform: scale(1.05);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }

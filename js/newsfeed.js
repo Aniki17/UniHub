@@ -1,5 +1,5 @@
 const API_URL = 'http://localhost:5000';
-    
+
 // Load articles from backend on page load
 window.onload = function () {
     fetchArticles();
@@ -21,6 +21,7 @@ function fetchArticles() {
 function addArticle() {
     const title = document.getElementById('title').value.trim();
     const content = document.getElementById('content').value.trim();
+    
     if (title && content) {
         fetch(`${API_URL}/articles`, {
             method: 'POST',
@@ -32,6 +33,7 @@ function addArticle() {
             createArticleElement(article.id, title, content);
             document.getElementById('title').value = '';
             document.getElementById('content').value = '';
+            document.getElementById('content').style.height = '30px'; // Reset height after submission
         })
         .catch(error => console.error('Error adding article:', error));
     }
@@ -81,3 +83,9 @@ function openModal(title, content) {
 function closeModal() {
     document.getElementById('modal').style.display = 'none';
 }
+
+// Auto-expanding content box
+document.getElementById('content').addEventListener('input', function () {
+    this.style.height = '30px'; // Reset height
+    this.style.height = this.scrollHeight + 'px'; // Adjust height based on content
+});
