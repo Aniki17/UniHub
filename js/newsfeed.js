@@ -76,16 +76,25 @@ function deleteArticle(id, articleElement) {
 }
 
 function openModal(title, content) {
-    document.getElementById('modal-content').innerHTML = `<h2>${title}</h2><p>${content}</p>`;
-    document.getElementById('modal').style.display = 'flex';
+    const modal = document.getElementById('modal');
+    const modalContent = document.getElementById('modal-content');
+    
+    modalContent.innerHTML = `<h2>${title}</h2><p>${content}</p>`;
+    modal.style.display = 'flex';
+    modal.style.position = 'fixed';
+    modal.style.width = '100vw';
+    modal.style.height = '100vh';
+    modal.style.overflowY = 'auto'; // Allow scrolling
+    modal.style.padding = '20px';
 }
 
 function closeModal() {
     document.getElementById('modal').style.display = 'none';
 }
 
-// Auto-expanding content box
+// Auto-expanding content box with max height constraint
 document.getElementById('content').addEventListener('input', function () {
     this.style.height = '30px'; // Reset height
-    this.style.height = this.scrollHeight + 'px'; // Adjust height based on content
+    this.style.height = Math.min(this.scrollHeight, 150) + 'px'; // Adjust height but cap at 150px
 });
+
