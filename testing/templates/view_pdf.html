@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ subject }} - E-Learning Platform</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; line-height: 1.6; }
+        h1, h2 { color: #333; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        .pdf-container {
+            width: 100%;
+            height: 700px;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+        }
+        .header { 
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            margin-bottom: 20px;
+        }
+        .header a {
+            color: white;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+        .back-btn {
+            background-color: #f44336;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .back-btn:hover { background-color: #d32f2f; }
+        .download-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+            margin-left: 10px;
+        }
+        .download-btn:hover { background-color: #45a049; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Engineering E-Learning Platform</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/admin">Admin Panel</a>
+        </nav>
+    </div>
+    
+    <div class="container">
+        <a href="/year/{{ year }}/branch/{{ branch }}" class="back-btn">Back to Subject List</a>
+        <a href="/download/{{ year }}/{{ branch }}/{{ subject }}" class="download-btn">Download PDF</a>
+        
+        <h2>{{ subject }} - Year {{ year }} {{ branch }}</h2>
+        
+        <div class="pdf-container">
+            <embed src="/download/{{ year }}/{{ branch }}/{{ subject }}" type="application/pdf" width="100%" height="100%">
+        </div>
+    </div>
+</body>
+</html>

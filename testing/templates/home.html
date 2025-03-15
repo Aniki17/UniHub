@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>E-Learning Platform</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; line-height: 1.6; }
+        h1, h2, h3 { color: #333; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        .year-box { 
+            border: 1px solid #ddd; 
+            margin-bottom: 20px; 
+            padding: 15px; 
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .branch-list { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 10px; 
+        }
+        .branch-btn {
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .branch-btn:hover { background-color: #45a049; }
+        .header { 
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            margin-bottom: 20px;
+        }
+        .header a {
+            color: white;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Engineering E-Learning Platform</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/admin">Admin Panel</a>
+        </nav>
+    </div>
+    
+    <div class="container">
+        <h2>Select Your Year and Branch</h2>
+        
+        {% for year, branches in courses.items() %}
+        <div class="year-box">
+            <h3>Year {{ year }}</h3>
+            <div class="branch-list">
+                {% for branch in branches %}
+                <a href="/year/{{ year }}/branch/{{ branch }}" class="branch-btn">{{ branch }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
