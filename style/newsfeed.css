@@ -3,14 +3,11 @@ body {
     max-width: 800px;
     margin: auto;
     padding: 30px;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                url('../images/newsfeedbackground.jpg');
-    background-repeat: repeat;
-    background-size: auto;
+    color: #EEEEEE;
 }
 
 .article {
-    background: linear-gradient(to right, #faf3e0, #e1c699);
+    background: linear-gradient(to right, #393E46, #222831);
     border-radius: 15px;
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
     padding: 20px;
@@ -22,8 +19,8 @@ body {
     align-items: flex-start;
     font-family: 'Georgia', serif;
     font-size: 1.3em;
-    border: 2px solid #b38b6d;
-    color: #3e2723;
+    border: 2px solid #00ADB5;
+    color: #EEEEEE;
 }
 
 .article:hover {
@@ -35,24 +32,30 @@ body {
     display: none;
     padding-top: 12px;
     font-size: 1.1em;
-    border: 2px solid #b38b6d;
+    border: 2px solid #00ADB5;
     padding: 10px;
-    color: #3e2723;
+    color: #EEEEEE;
 }
 
+/* Updated .remove-btn to match default button styling */
 .remove-btn {
-    background: red;
-    color: white;
+    background: linear-gradient(to right, #00ADB5, #007A82);
+    color: #EEEEEE;
     border: none;
-    padding: 8px;
+    padding: 12px 20px;
+    font-size: 1.2em;
+    font-family: 'Georgia', serif;
     cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.2);
     margin-left: 10px;
-    border-radius: 5px;
-    transition: background 0.2s;
 }
 
 .remove-btn:hover {
-    background: darkred;
+    background: linear-gradient(to right, #007A82, #005a5d);
+    transform: scale(1.05);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .modal {
@@ -68,7 +71,7 @@ body {
 }
 
 .modal-content {
-    background: linear-gradient(to right, #faf3e0, #e1c699);
+    background: #393E46;
     padding: 25px;
     width: 90%;
     height: 90vh;
@@ -76,45 +79,47 @@ body {
     text-align: left;
     border-radius: 12px;
     font-size: 1.2em;
-    border: 2px solid #b38b6d;
-    color: #3e2723;
+    border: 2px solid #00ADB5;
+    color: #EEEEEE;
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
     overflow-y: auto;
 }
 
 .close-btn {
     margin-top: 10px;
-    background: red;
-    color: white;
+    background: #00ADB5;
+    color: #222831;
     border: none;
     padding: 10px 14px;
     cursor: pointer;
     border-radius: 5px;
 }
 
-#title, #content {
+#title,
+#content {
     width: 100%;
     margin-bottom: 10px;
     padding: 10px;
-    border: 2px solid #b38b6d;
+    border: 2px solid #00ADB5;
     border-radius: 8px;
     font-size: 1.2em;
     font-family: 'Georgia', serif;
-    background: #faf3e0;
-    color: #3e2723;
+    background: #393E46;
+    color: #EEEEEE;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     resize: vertical;
     transition: all 0.3s ease-in-out;
 }
 
-#title:focus, #content:focus {
-    border-color: #8c5a2b;
-    box-shadow: 0 0 10px rgba(140, 90, 43, 0.5);
+#title:focus,
+#content:focus {
+    border-color: #007A82;
+    box-shadow: 0 0 10px rgba(0, 173, 181, 0.5);
 }
 
 button {
-    background: linear-gradient(to right, #b38b6d, #8c5a2b);
-    color: white;
+    background: linear-gradient(to right, #00ADB5, #007A82);
+    color: #EEEEEE;
     border: none;
     padding: 12px 20px;
     font-size: 1.2em;
@@ -126,7 +131,10 @@ button {
 }
 
 button:hover {
-    background: linear-gradient(to right, #8c5a2b, #5a3821);
+    background: linear-gradient(to right, #007A82, #005a5d);
     transform: scale(1.05);
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+h1{
+    color: #00ADB5;
 }

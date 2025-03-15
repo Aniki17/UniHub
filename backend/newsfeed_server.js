@@ -1,5 +1,3 @@
-//newsfeed ka server
-
 const express = require("express");
 const sqlite3 = require("sqlite3").verbose();
 const cors = require("cors");
@@ -64,6 +62,24 @@ app.delete("/articles/:id", (req, res) => {
             res.json({ message: "Article deleted" });
         }
     });
+});
+
+// Update an article
+app.put("/articles/:id", (req, res) => {
+    const { id } = req.params;
+    const { title, content } = req.body;
+
+    db.run(
+        "UPDATE articles SET title = ?, content = ? WHERE id = ?",
+        [title, content, id],
+        function (err) {
+            if (err) {
+                res.status(500).json({ error: err.message });
+            } else {
+                res.json({ id, title, content });
+            }
+        }
+    );
 });
 
 app.listen(port, () => {
