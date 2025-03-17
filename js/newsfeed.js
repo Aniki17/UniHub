@@ -17,7 +17,7 @@ function fetchArticles() {
                     article.title,
                     article.content,
                     article.imageUrl,        // Make sure your API returns this
-                    article.publishedDate    // Make sure your API returns this
+                    article.publishedDate     // Make sure your API returns this
                 );
             });
         })
@@ -70,7 +70,11 @@ function createArticleElement(id, title, content, imageUrl, publishedDate) {
     const articleCard = document.createElement('div');
     articleCard.className = 'article-card';
     articleCard.setAttribute('data-id', id);
-    articleCard.dataset.content = content; // store content for the modal
+    // Store content for the modal without displaying it on the card
+    articleCard.dataset.content = content;
+    // Also store imageUrl and publishedDate as data attributes for editing later
+    articleCard.dataset.imageurl = imageUrl;
+    articleCard.dataset.publisheddate = publishedDate;
 
     // Log the dynamic image URL for debugging
     console.log("Dynamic image URL:", imageUrl);
@@ -78,10 +82,8 @@ function createArticleElement(id, title, content, imageUrl, publishedDate) {
     // Article Image with error fallback
     const img = document.createElement('img');
     img.className = 'article-image';
-    // Use the dynamic imageUrl only if it starts with "http"
-    img.src = (imageUrl && imageUrl.startsWith("http")) 
-        ? imageUrl 
-        : 'https://dummyimage.com/300x150/ccc/000&text=No+Image';
+    // Use the dynamic imageUrl only if it exists; otherwise, fallback
+    img.src = imageUrl ? imageUrl : 'https://dummyimage.com/300x150/ccc/000&text=No+Image';
     img.alt = 'Article Image';
     img.onerror = function() {
         this.src = 'https://dummyimage.com/300x150/ccc/000&text=No+Image';
@@ -97,18 +99,12 @@ function createArticleElement(id, title, content, imageUrl, publishedDate) {
     dateElem.className = 'article-date';
     dateElem.innerText = `Published: ${publishedDate}`;
 
-    // Article Content
-    const articleContent = document.createElement('p');
-    articleContent.innerText = content;
-    articleContent.className = 'article-content';
-
-    // Append children
+    // Append children to the card (content is intentionally not appended)
     articleCard.appendChild(img);
     articleCard.appendChild(articleTitle);
     articleCard.appendChild(dateElem);
-    articleCard.appendChild(articleContent);
 
-    // Clicking the article opens the modal
+    // Clicking the article opens the modal (which will display the content)
     articleCard.onclick = function () {
         openModal(id);
     };
@@ -122,14 +118,19 @@ function openModal(id) {
     const modalContent = document.getElementById('modal-content');
     const articleElement = document.querySelector(`[data-id='${id}']`);
     
-    // Retrieve the stored content from data attributes
+    // Retrieve stored data
     const currentTitle = articleElement.querySelector('.article-title').innerText;
     const currentContent = articleElement.dataset.content;
+    const currentImageUrl = articleElement.dataset.imageurl;
+    const currentPublishedDate = articleElement.dataset.publisheddate;
 
-    // Build the modal content
+    // Build the modal content (view mode) without showing the image URL as text.
+    // The image element is styled inline with fixed dimensions and centered.
     modalContent.innerHTML = `
         <h2 id="modal-title">${currentTitle}</h2>
+        <img src="${currentImageUrl ? currentImageUrl : 'https://dummyimage.com/300x150/ccc/000&text=No+Image'}" class="modal-image" alt="Article Image" style="width:567px; height:378px; display:block; margin:0 auto;" />
         <p id="modal-text">${currentContent}</p>
+        <p id="modal-publishedDate">Published: ${currentPublishedDate || 'N/A'}</p>
     `;
     
     const editBtn = document.createElement('button');
@@ -167,9 +168,41 @@ function openModal(id) {
 }
 
 function enableEditing(id) {
+    const modalContent = document.getElementById('modal-content');
     const titleElem = document.getElementById('modal-title');
     const contentElem = document.getElementById('modal-text');
     
+    // Get the current image URL and published date from the article element's dataset
+    const articleElement = document.querySelector(`[data-id='${id}']`);
+    const currentImageUrl = articleElement.dataset.imageurl;
+    const currentPublishedDate = articleElement.dataset.publisheddate;
+    
+    // Create styled input for published date
+    const newDateInput = document.createElement('input');
+    newDateInput.type = 'date';
+    newDateInput.value = currentPublishedDate || '';
+    newDateInput.id = 'edit-publishedDate';
+    newDateInput.style.width = '100%';
+    newDateInput.style.marginBottom = '10px';
+    newDateInput.style.backgroundColor = '#393E46';
+    newDateInput.style.color = '#EEEEEE';
+    newDateInput.style.border = '2px solid #00ADB5';
+    newDateInput.style.padding = '10px';
+    newDateInput.style.borderRadius = '8px';
+    
+    // Create styled input for image URL (for editing, even though it's not displayed in view mode)
+    const newImageInput = document.createElement('input');
+    newImageInput.type = 'text';
+    newImageInput.value = currentImageUrl || '';
+    newImageInput.id = 'edit-imageUrl';
+    newImageInput.style.width = '100%';
+    newImageInput.style.marginBottom = '10px';
+    newImageInput.style.backgroundColor = '#393E46';
+    newImageInput.style.color = '#EEEEEE';
+    newImageInput.style.border = '2px solid #00ADB5';
+    newImageInput.style.padding = '10px';
+    newImageInput.style.borderRadius = '8px';
+
     // Create styled input for title
     const newTitleInput = document.createElement('input');
     newTitleInput.type = 'text';
@@ -194,16 +227,38 @@ function enableEditing(id) {
     newContentTextarea.style.padding = '10px';
     newContentTextarea.style.borderRadius = '8px';
     
-    titleElem.replaceWith(newTitleInput);
-    contentElem.replaceWith(newContentTextarea);
+    // Replace existing modal content with the editing fields
+    modalContent.innerHTML = ''; // Clear modal
+    // Append new inputs in order: Published Date, Image URL, Title, and Content
+    modalContent.appendChild(newDateInput);
+    modalContent.appendChild(newImageInput);
+    modalContent.appendChild(newTitleInput);
+    modalContent.appendChild(newContentTextarea);
     
-    document.querySelector('.edit-btn').style.display = 'none';
-    document.querySelector('.save-btn').style.display = 'inline-block';
+    // Create and add the save and cancel buttons
+    const saveBtn = document.createElement('button');
+    saveBtn.innerText = 'Save Changes';
+    saveBtn.className = 'save-btn';
+    saveBtn.onclick = function () {
+        saveArticle(id);
+    };
+    modalContent.appendChild(saveBtn);
+    
+    const cancelBtn = document.createElement('button');
+    cancelBtn.innerText = 'Cancel';
+    cancelBtn.className = 'close-btn';
+    cancelBtn.onclick = function () {
+        closeModal();
+        openModal(id); // Reopen modal in view mode
+    };
+    modalContent.appendChild(cancelBtn);
 }
 
 function saveArticle(id) {
     const newTitle = document.getElementById('edit-title').value.trim();
     const newContent = document.getElementById('edit-content').value.trim();
+    const newImageUrl = document.getElementById('edit-imageUrl').value.trim();
+    const newPublishedDate = document.getElementById('edit-publishedDate').value.trim() || new Date().toLocaleDateString();
 
     if (newTitle && newContent) {
         fetch(`${API_URL}/articles/${id}`, {
@@ -212,8 +267,8 @@ function saveArticle(id) {
             body: JSON.stringify({
                 title: newTitle,
                 content: newContent,
-                // If you also want to update imageUrl or publishedDate,
-                // you need to fetch them from the modal (or add more fields).
+                imageUrl: newImageUrl,
+                publishedDate: newPublishedDate
             })
         })
         .then(response => response.json())
@@ -226,6 +281,8 @@ function saveArticle(id) {
                     titleElem.innerText = updatedArticle.title;
                 }
                 articleElement.dataset.content = updatedArticle.content;
+                articleElement.dataset.imageurl = updatedArticle.imageUrl;
+                articleElement.dataset.publisheddate = updatedArticle.publishedDate;
             }
             fetchArticles(); // Refresh articles from the server
             closeModal();

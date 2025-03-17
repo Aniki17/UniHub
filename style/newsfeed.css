@@ -5,7 +5,7 @@ body {
     margin: auto;
     padding: 30px;
     color: #EEEEEE;
-    background: #222831;
+    background: #EEEEEE;
 }
 
 /* Card Layout for Articles */
@@ -168,4 +168,9 @@ button:hover {
 /* Headings */
 h1 {
     color: #00ADB5;
+}
+
+/* Center the modal title */
+#modal-title {
+    text-align: center;
 }
