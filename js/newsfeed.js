@@ -12,7 +12,13 @@ function fetchArticles() {
             const newsFeed = document.getElementById('news-feed');
             newsFeed.innerHTML = ''; // Clear existing articles
             articles.forEach(article => {
-                createArticleElement(article.id, article.title, article.content);
+                createArticleElement(
+                    article.id,
+                    article.title,
+                    article.content,
+                    article.imageUrl,        // Make sure your API returns this
+                    article.publishedDate    // Make sure your API returns this
+                );
             });
         })
         .catch(error => console.error('Error fetching articles:', error));
@@ -21,64 +27,106 @@ function fetchArticles() {
 function addArticle() {
     const title = document.getElementById('title').value.trim();
     const content = document.getElementById('content').value.trim();
-    
+    const imageUrl = document.getElementById('imageUrl').value.trim();
+    const publishedDateInput = document.getElementById('publishedDate').value.trim();
+    // Default to today's date if no date is provided
+    let publishedDate = publishedDateInput || new Date().toLocaleDateString();
+
     if (title && content) {
         fetch(`${API_URL}/articles`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ title, content })
+            body: JSON.stringify({
+                title,
+                content,
+                imageUrl,
+                publishedDate
+            })
         })
         .then(response => response.json())
         .then(article => {
-            createArticleElement(article.id, article.title, article.content);
+            createArticleElement(
+                article.id,
+                article.title,
+                article.content,
+                article.imageUrl,
+                article.publishedDate
+            );
+            // Clear the form
             document.getElementById('title').value = '';
             document.getElementById('content').value = '';
-            document.getElementById('content').style.height = '30px'; // Reset height after submission
+            document.getElementById('imageUrl').value = '';
+            document.getElementById('publishedDate').value = '';
+            document.getElementById('content').style.height = '30px'; // Reset height
         })
         .catch(error => console.error('Error adding article:', error));
     }
 }
 
-function createArticleElement(id, title, content) {
-    const article = document.createElement('div');
-    article.className = 'article';
-    article.setAttribute('data-id', id);
-    article.dataset.content = content;
+function createArticleElement(id, title, content, imageUrl, publishedDate) {
+    // Default the published date to today's date if not provided
+    publishedDate = publishedDate || new Date().toLocaleDateString();
 
+    const articleCard = document.createElement('div');
+    articleCard.className = 'article-card';
+    articleCard.setAttribute('data-id', id);
+    articleCard.dataset.content = content; // store content for the modal
+
+    // Log the dynamic image URL for debugging
+    console.log("Dynamic image URL:", imageUrl);
+
+    // Article Image with error fallback
+    const img = document.createElement('img');
+    img.className = 'article-image';
+    // Use the dynamic imageUrl only if it starts with "http"
+    img.src = (imageUrl && imageUrl.startsWith("http")) 
+        ? imageUrl 
+        : 'https://dummyimage.com/300x150/ccc/000&text=No+Image';
+    img.alt = 'Article Image';
+    img.onerror = function() {
+        this.src = 'https://dummyimage.com/300x150/ccc/000&text=No+Image';
+    };
+
+    // Article Title
     const articleTitle = document.createElement('h2');
     articleTitle.innerText = title;
-    article.appendChild(articleTitle);
+    articleTitle.className = 'article-title';
 
-    // Remove the inline remove button
-    // so the only remove button is inside the modal
+    // Published Date
+    const dateElem = document.createElement('p');
+    dateElem.className = 'article-date';
+    dateElem.innerText = `Published: ${publishedDate}`;
+
+    // Article Content
+    const articleContent = document.createElement('p');
+    articleContent.innerText = content;
+    articleContent.className = 'article-content';
+
+    // Append children
+    articleCard.appendChild(img);
+    articleCard.appendChild(articleTitle);
+    articleCard.appendChild(dateElem);
+    articleCard.appendChild(articleContent);
 
     // Clicking the article opens the modal
-    article.onclick = function (event) {
+    articleCard.onclick = function () {
         openModal(id);
     };
 
-    document.getElementById('news-feed').appendChild(article);
-}
-
-function deleteArticle(id, articleElement) {
-    fetch(`${API_URL}/articles/${id}`, { method: 'DELETE' })
-        .then(response => response.json())
-        .then(() => {
-            if (articleElement) {
-                articleElement.remove();
-            }
-            closeModal();
-        })
-        .catch(error => console.error('Error deleting article:', error));
+    // Add the card to the news feed
+    document.getElementById('news-feed').appendChild(articleCard);
 }
 
 function openModal(id) {
     const modal = document.getElementById('modal');
     const modalContent = document.getElementById('modal-content');
     const articleElement = document.querySelector(`[data-id='${id}']`);
-    const currentTitle = articleElement.querySelector('h2').innerText;
-    const currentContent = articleElement.dataset.content;
     
+    // Retrieve the stored content from data attributes
+    const currentTitle = articleElement.querySelector('.article-title').innerText;
+    const currentContent = articleElement.dataset.content;
+
+    // Build the modal content
     modalContent.innerHTML = `
         <h2 id="modal-title">${currentTitle}</h2>
         <p id="modal-text">${currentContent}</p>
@@ -161,24 +209,41 @@ function saveArticle(id) {
         fetch(`${API_URL}/articles/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ title: newTitle, content: newContent })
+            body: JSON.stringify({
+                title: newTitle,
+                content: newContent,
+                // If you also want to update imageUrl or publishedDate,
+                // you need to fetch them from the modal (or add more fields).
+            })
         })
         .then(response => response.json())
         .then(updatedArticle => {
             // Update the article element in the news feed
             const articleElement = document.querySelector(`[data-id='${id}']`);
-            if(articleElement) {
-                const titleElem = articleElement.querySelector('h2');
-                if(titleElem) {
+            if (articleElement) {
+                const titleElem = articleElement.querySelector('.article-title');
+                if (titleElem) {
                     titleElem.innerText = updatedArticle.title;
                 }
                 articleElement.dataset.content = updatedArticle.content;
             }
-            fetchArticles(); // Refresh articles
+            fetchArticles(); // Refresh articles from the server
             closeModal();
         })
         .catch(error => console.error('Error editing article:', error));
     }
+}
+
+function deleteArticle(id, articleElement) {
+    fetch(`${API_URL}/articles/${id}`, { method: 'DELETE' })
+        .then(response => response.json())
+        .then(() => {
+            if (articleElement) {
+                articleElement.remove();
+            }
+            closeModal();
+        })
+        .catch(error => console.error('Error deleting article:', error));
 }
 
 function closeModal() {

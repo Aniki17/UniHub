@@ -19,7 +19,9 @@ const db = new sqlite3.Database("./news.db", (err) => {
             CREATE TABLE IF NOT EXISTS articles (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 title TEXT NOT NULL,
-                content TEXT NOT NULL
+                content TEXT NOT NULL,
+                imageUrl TEXT,
+                publishedDate TEXT
             )
         `);
     }
@@ -38,15 +40,21 @@ app.get("/articles", (req, res) => {
 
 // Add a new article
 app.post("/articles", (req, res) => {
-    const { title, content } = req.body;
+    const { title, content, imageUrl, publishedDate } = req.body;
     db.run(
-        "INSERT INTO articles (title, content) VALUES (?, ?)",
-        [title, content],
+        "INSERT INTO articles (title, content, imageUrl, publishedDate) VALUES (?, ?, ?, ?)",
+        [title, content, imageUrl, publishedDate],
         function (err) {
             if (err) {
                 res.status(500).json({ error: err.message });
             } else {
-                res.json({ id: this.lastID, title, content });
+                res.json({ 
+                    id: this.lastID, 
+                    title, 
+                    content, 
+                    imageUrl, 
+                    publishedDate 
+                });
             }
         }
     );
@@ -67,16 +75,15 @@ app.delete("/articles/:id", (req, res) => {
 // Update an article
 app.put("/articles/:id", (req, res) => {
     const { id } = req.params;
-    const { title, content } = req.body;
-
+    const { title, content, imageUrl, publishedDate } = req.body;
     db.run(
-        "UPDATE articles SET title = ?, content = ? WHERE id = ?",
-        [title, content, id],
+        "UPDATE articles SET title = ?, content = ?, imageUrl = ?, publishedDate = ? WHERE id = ?",
+        [title, content, imageUrl, publishedDate, id],
         function (err) {
             if (err) {
                 res.status(500).json({ error: err.message });
             } else {
-                res.json({ id, title, content });
+                res.json({ id, title, content, imageUrl, publishedDate });
             }
         }
     );
