@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>News Feed</title>
+  <!-- Link to your external CSS -->
+  <link rel="stylesheet" href="../style/newsfeed.css" />
+</head>
+<body>
+  <h1>News Feed</h1>
+  
+  <!-- Add Article Form -->
+  <div id="add-article-form">
+    <input type="text" id="title" placeholder="Title" />
+    <textarea id="content" placeholder="Content"></textarea>
+    <!-- Field for Image URL -->
+    <input type="text" id="imageUrl" placeholder="Image URL" />
+    <!-- Date Field (optional, or can be handled by server) -->
+    <input type="date" id="publishedDate" />
+    <button onclick="addArticle()">Add Article</button>
+  </div>
+
+  <!-- Container where article cards will appear -->
+  <div id="news-feed"></div>
+
+  <!-- Modal for viewing/editing/removing an article -->
+  <div id="modal" class="modal">
+    <div class="modal-content" id="modal-content"></div>
+    <button class="close-btn" onclick="closeModal()">Close</button>
+  </div>
+
+  <!-- Link to your external JavaScript -->
+  <script src="../js/newsfeed.js"></script>
+</body>
+</html>
