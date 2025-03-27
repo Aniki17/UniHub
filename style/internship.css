@@ -25,7 +25,6 @@ body {
   position: relative;
   margin: 0 auto;
   top: 60px;
-  bottom: 100px;
   background-color: #ffffff; /* White container background */
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
   background-image: url(/images/background.jpg);
@@ -120,17 +119,19 @@ font-size: 32px;
   margin-right: 10px; 
 }
 
-.footer {
-  background-color: #00ADB5; /* Darker gray footer background */
-  color: #f7f7f7; /* Light text color */
-  padding: 20px;
+footer {
+  background-color: #2b2b2b;
+  color: white;
   text-align: center;
-  clear: both;
-  width: 100%;
-  padding: 20px;
-  position: absolute;
-  bottom: 0;
-  left: 0
+  padding: 10px 0;
+  width: 100vw; /* Set width to 100% of the viewport width */
+  margin: 0; /* Remove any margin */
+  box-sizing: border-box; /* Include padding in width calculation */
+  left: 0; /* Set left position to 0 */
+  right: 0; /* Set right position to 0 */
+  position: fixed; /* Set position to fixed */
+  bottom: 0; /* Set bottom position to 0 */
+  height: auto; /* Set height to auto */
 }
 
 .footer-links {
@@ -153,7 +154,7 @@ font-size: 32px;
 
 .footer-copyright {
   font-size: 0.85em;
-  color: #f6f6f6; /* Soft gray text */
+  color: #999999; /* Soft gray text */
 }
 
 .social-links {

@@ -1,74 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Year {{ year }} - E-Learning Platform</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; line-height: 1.6; }
-        h1, h2, h3 { color: #333; }
-        .container { max-width: 1000px; margin: 0 auto; }
-        .branch-box { 
-            border: 1px solid #ddd; 
-            margin-bottom: 20px; 
-            padding: 15px; 
-            border-radius: 5px;
-            background-color: #f9f9f9;
-        }
-        .branch-btn {
-            padding: 8px 15px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            margin: 5px;
-        }
-        .branch-btn:hover { background-color: #45a049; }
-        .header { 
-            background-color: #333;
-            color: white;
-            padding: 10px 20px;
-            margin-bottom: 20px;
-        }
-        .header a {
-            color: white;
-            text-decoration: none;
-            margin-right: 15px;
-        }
-        .back-btn {
-            background-color: #f44336;
-            color: white;
-            padding: 8px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-        .back-btn:hover { background-color: #d32f2f; }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Year {{ year }} - E-Learning Portal</title>
+    <link rel="stylesheet" href="/testing/static/css/style.css">
 </head>
 <body>
-    <div class="header">
-        <h1>Engineering E-Learning Platform</h1>
-        <nav>
-            <a href="/">Home</a>
-            <a href="/admin">Admin Panel</a>
-        </nav>
-    </div>
-    
     <div class="container">
-        <a href="/" class="back-btn">Back to Home</a>
+        <header>
+            <h1>Year {{ year }} Branches</h1>
+            <p>Select your branch to view subjects</p>
+            <a href="{{ url_for('elearning') }}" class="back-btn">← Back to Years</a>
+        </header>
         
-        <h2>Year {{ year }} - Select Branch</h2>
+        <main>
+            <section class="branches-section">
+                <div class="branch-cards">
+                    {% for branch in branches %}
+                    <div class="card">
+                        <h3>{{ branch }}</h3>
+                        <a href="{{ url_for('branch_view', year=year, branch=branch) }}" class="btn">View Subjects</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+        </main>
         
-        <div class="branch-box">
-            {% for branch in branches %}
-            <a href="/year/{{ year }}/branch/{{ branch }}" class="branch-btn">{{ branch }}</a>
-            {% endfor %}
-        </div>
+        <footer>
+            <p>&copy; 2025 E-Learning Portal. All rights reserved.</p>
+        </footer>
     </div>
 </body>
 </html>
