@@ -78,10 +78,14 @@
           <h1>UniHub</h1>
         </div>
         <ul class="nav">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="components/eventcalendar.html">Event Calendar</a></li>
-          <li><a href="components/internship.html">Internship</a></li>
-          <li><a href="e-learning/e-learning.html">E-learning</a></li>
+
+         
+
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/components/eventcalendar.html">Event Calendar</a></li>
+          <li><a href="/components/internship.html">Internship</a></li>
+          <li><a href="http://localhost:5000" class="e-learning-button">E-Learning</a></li>
+>>>>>>> e8280397ce3f239b6881ad63e39b4921a72490ae:testing/templates/index.html
           <li>
             <a href="#">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell">
@@ -90,19 +94,35 @@
               </svg>
             </a>
           </li>
-          <a class="sign-in" aria-label="Sign in" href="components/signin.html" target="_top"><span class="gb_Q">Sign in</span></a>
+
+         
+
+          <!-- Example single danger button -->
+<div class="btn-group">
+  <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+    SIGN IN
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="/components/signin.html">STUDENT</a></li>
+    <li><a class="dropdown-item" href="/components/admin-reg.html">ADMIN</a></li>
+  </ul>
+</div>
+>>>>>>> e8280397ce3f239b6881ad63e39b4921a72490ae:testing/templates/index.html
         </ul>
       </div>
 
       <!-- Main Content -->
       <div class="main-content">
         <div class="container">
-          <!-- New Community Introduction Section -->
-          <div class="hero-section">
+         <div class="hero-section">
             <div class="row">
               <div class="col-lg-8">
                 <h2 class="hero-title">Welcome to UniHub Community</h2>
                 <p class="hero-description">
+
+                  A welcoming community that inspires possibilities, connects people and ignites learning!
+
+
                   UniHub is a vibrant platform connecting students, faculty, and alumni across campus. We foster collaboration, 
                   knowledge sharing, and community building through innovative digital experiences. Join thousands of members 
                   already benefiting from our exclusive campus resources, events, and networking opportunities.
@@ -132,7 +152,7 @@
                 <div class="feature-icon">
                   <i class="fas fa-calendar-alt"></i>
                 </div>
-                <h3 class="feature-title">Event Calendar</h3>
+                <h3 class="feature-title"><a href="/components/eventcalendar.html" >EVENT CALENDER</a></h3>
                 <p class="feature-description">
                   Stay updated with all campus events, workshops, and activities happening around you.
                 </p>
@@ -141,7 +161,7 @@
                 <div class="feature-icon">
                   <i class="fas fa-briefcase"></i>
                 </div>
-                <h3 class="feature-title">Internship Portal</h3>
+                <h3 class="feature-title"><a href="/components/internship.html">Internship Portal</a></h3>
                 <p class="feature-description">
                   Discover internship opportunities curated specifically for our university students.
                 </p>
@@ -150,7 +170,7 @@
                 <div class="feature-icon">
                   <i class="fas fa-graduation-cap"></i>
                 </div>
-                <h3 class="feature-title">E-Learning Hub</h3>
+                <h3 class="feature-title"><a href="http://localhost:5000">E-Learning Hub</a></h3>
                 <p class="feature-description">
                   Access exclusive educational resources, tutorials, and learning materials.
                 </p>
@@ -183,10 +203,10 @@
           <a href="components/about-us.html">About us</a>
           <a href="#">Help Center</a>
           <a href="#">Contact us</a>
-          <a href="#">FAQs</a>
+          <a href="/components/faqs.html">FAQs</a>
         </div>
         <div class="footer-copyright">
-          &copy; 2025 UniHub-V.01 - Privacy - Terms
+          &copy; 2025 UniHub - v2.1 - Privacy - Terms
         </div>
       </footer>
     </div>
