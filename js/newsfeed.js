@@ -10,15 +10,31 @@ function fetchArticles() {
         .then(response => response.json())
         .then(articles => {
             const newsFeed = document.getElementById('news-feed');
-            newsFeed.innerHTML = ''; // Clear existing articles
+            const indexFeed = document.getElementById('index-news-feed');
+
+            if (newsFeed) newsFeed.innerHTML = '';
+            if (indexFeed) indexFeed.innerHTML = '';
+
             articles.forEach(article => {
-                createArticleElement(
+                // Create the article element once
+                const articleElement = createArticleElement(
                     article.id,
                     article.title,
                     article.content,
-                    article.imageUrl,        // Make sure your API returns this
-                    article.publishedDate     // Make sure your API returns this
+                    article.imageUrl,
+                    article.publishedDate
                 );
+                // Append to newsfeed if container exists
+                if (newsFeed) newsFeed.appendChild(articleElement);
+                // Append a clone to the index page if container exists
+                if (indexFeed) {
+                    const clonedElement = articleElement.cloneNode(true);
+                    // Re-assign the click event (cloneNode(true) does not copy event listeners)
+                    clonedElement.onclick = function () {
+                        openModal(article.id);
+                    };
+                    indexFeed.appendChild(clonedElement);
+                }
             });
         })
         .catch(error => console.error('Error fetching articles:', error));
@@ -45,13 +61,24 @@ function addArticle() {
         })
         .then(response => response.json())
         .then(article => {
-            createArticleElement(
+            const articleElement = createArticleElement(
                 article.id,
                 article.title,
                 article.content,
                 article.imageUrl,
                 article.publishedDate
             );
+            const newsFeed = document.getElementById('news-feed');
+            const indexFeed = document.getElementById('index-news-feed');
+
+            if (newsFeed) newsFeed.appendChild(articleElement);
+            if (indexFeed) {
+                const clonedElement = articleElement.cloneNode(true);
+                clonedElement.onclick = function () {
+                    openModal(article.id);
+                };
+                indexFeed.appendChild(clonedElement);
+            }
             // Clear the form
             document.getElementById('title').value = '';
             document.getElementById('content').value = '';
@@ -82,7 +109,6 @@ function createArticleElement(id, title, content, imageUrl, publishedDate) {
     // Article Image with error fallback
     const img = document.createElement('img');
     img.className = 'article-image';
-    // Use the dynamic imageUrl only if it exists; otherwise, fallback
     img.src = imageUrl ? imageUrl : 'https://dummyimage.com/300x150/ccc/000&text=No+Image';
     img.alt = 'Article Image';
     img.onerror = function() {
@@ -109,8 +135,7 @@ function createArticleElement(id, title, content, imageUrl, publishedDate) {
         openModal(id);
     };
 
-    // Add the card to the news feed
-    document.getElementById('news-feed').appendChild(articleCard);
+    return articleCard;
 }
 
 function openModal(id) {
@@ -125,7 +150,6 @@ function openModal(id) {
     const currentPublishedDate = articleElement.dataset.publisheddate;
 
     // Build the modal content (view mode) without showing the image URL as text.
-    // The image element is styled inline with fixed dimensions and centered.
     modalContent.innerHTML = `
         <h2 id="modal-title">${currentTitle}</h2>
         <img src="${currentImageUrl ? currentImageUrl : 'https://dummyimage.com/300x150/ccc/000&text=No+Image'}" class="modal-image" alt="Article Image" style="width:567px; height:378px; display:block; margin:0 auto;" />
