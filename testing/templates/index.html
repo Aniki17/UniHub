@@ -3,100 +3,31 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="images/campusconnectlogowithouttext.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="/images/campusconnectlogowithouttext.png" type="image/x-icon" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="style/main.css">
+    <link rel='stylesheet' type='text/css' href='/style/main.css'>
     <title>UniHub</title>
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-        .modal-content {
-            text-align: center;
-            padding: 20px;
-            border-radius: 10px;
-            background: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        .modal-title {
-            font-weight: 600;
-            text-align: center;
-            font-size: 28px;
-            margin-bottom: 15px;
-        }
-        .modal-image {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-        .modal-text {
-            font-size: 16px;
-            color: #333;
-            line-height: 1.6;
-            text-align: center;
-        }
-        
-        .close-btn:hover {
-            background-color: #c82333;
-        }
-        .modal-image {
-    display: block;
-    margin: 0 auto;
-    border-radius: 10px;
-    margin-bottom: 20px; /* Adds space between image and text */
-}
-
-.modal-content p {
-    text-align: center;
-}
-
-.close-button {
-  display: inline-block;  /* Makes button size fit content */
-    margin: 20px auto 0;   /* Centers the button */
-    background-color: #d9534f;
-    color: white;
-    border: none;
-    padding: 10px 20px;    /* Adjust padding for better fit */
-    border-radius: 5px;
-    cursor: pointer;
-    width: fit-content;
-    height: fit-content
-    
-}
-
-    </style>
   </head>
   <body>
     <div class="container-fluid p-0">
       <!-- Header - Keeping the same -->
       <div class="header">
         <div class="logo">
-          <img src="images/campusconnectlogowithouttext.png" alt="Campus Connect Logo">
+          <img src="/images/campusconnectlogowithouttext.png" alt="Campus Connect Logo">
           <h1>UniHub</h1>
         </div>
         <ul class="nav">
-
-         
-
           <li><a href="/index.html">Home</a></li>
           <li><a href="/components/eventcalendar.html">Event Calendar</a></li>
           <li><a href="/components/internship.html">Internship</a></li>
           <li><a href="http://localhost:5000" class="e-learning-button">E-Learning</a></li>
->>>>>>> e8280397ce3f239b6881ad63e39b4921a72490ae:testing/templates/index.html
           <li>
             <a href="#">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell">
-                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
             </a>
           </li>
-
-         
-
           <!-- Example single danger button -->
 <div class="btn-group">
   <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -107,7 +38,6 @@
     <li><a class="dropdown-item" href="/components/admin-reg.html">ADMIN</a></li>
   </ul>
 </div>
->>>>>>> e8280397ce3f239b6881ad63e39b4921a72490ae:testing/templates/index.html
         </ul>
       </div>
 
@@ -177,7 +107,104 @@
               </div>
             </div>
           </div>
-          
+          <div class="news-feed">
+            <div class="news-item">
+              <div class="news-image-container">
+                <img class="news-image" src="/images/library.jpg" alt="New Library Image">
+                <div class="news-image-overlay"></div>
+              </div>
+              <div class="news-content">
+                <h3 class="news-title">New Library Opens</h3>
+                <span class="news-date"><i class="far fa-calendar-alt me-2"></i>Oct 1, 2023</span>
+                <p class="news-description">A new library has opened on campus with state-of-the-art facilities and a vast collection of books.</p>
+              </div>
+              <div class="news-footer">
+                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                <span class="news-category">Facilities</span>
+              </div>
+            </div>
+
+            <div class="news-item">
+              <div class="news-image-container">
+                <img class="news-image" src="/images/guestlecture.jpg" alt="Guest Lecture Image">
+                <div class="news-image-overlay"></div>
+              </div>
+              <div class="news-content">
+                <h3 class="news-title">Guest Lecture</h3>
+                <span class="news-date"><i class="far fa-calendar-alt me-2"></i>Oct 2, 2023</span>
+                <p class="news-description">Renowned scientist Dr. Jane Smith will be giving a guest lecture on climate change this Friday.</p>
+              </div>
+              <div class="news-footer">
+                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                <span class="news-category">Events</span>
+              </div>
+            </div>
+
+            <div class="news-item">
+              <div class="news-image-container">
+                <img class="news-image" src="/images/sportsday.jpg" alt="Sports Day Image">
+                <div class="news-image-overlay"></div>
+              </div>
+              <div class="news-content">
+                <h3 class="news-title">Sports Day</h3>
+                <span class="news-date"><i class="far fa-calendar-alt me-2"></i>Oct 5, 2023</span>
+                <p class="news-description">Join us for the annual sports day with various activities including basketball, soccer, and track events.</p>
+              </div>
+              <div class="news-footer">
+                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                <span class="news-category">Sports</span>
+              </div>
+            </div>
+
+            <div class="news-item">
+              <div class="news-image-container">
+                <img class="news-image" src="/images/newcafe.jpg" alt="New Cafeteria Menu Image">
+                <div class="news-image-overlay"></div>
+              </div>
+              <div class="news-content">
+                <h3 class="news-title">New Cafeteria Menu</h3>
+                <span class="news-date"><i class="far fa-calendar-alt me-2"></i>Oct 6, 2023</span>
+                <p class="news-description">The cafeteria has introduced a new menu with a variety of healthy and delicious options for all students.</p>
+              </div>
+              <div class="news-footer">
+                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                <span class="news-category">Dining</span>
+              </div>
+            </div>
+
+            <div class="news-item">
+              <div class="news-image-container">
+                <img class="news-image" src="/images/art ex.jpg" alt="Art Exhibition Image">
+                <div class="news-image-overlay"></div>
+              </div>
+              <div class="news-content">
+                <h3 class="news-title">Art Exhibition</h3>
+                <span class="news-date"><i class="far fa-calendar-alt me-2"></i>Oct 7, 2023</span>
+                <p class="news-description">Don't miss the annual art exhibition showcasing works from talented students across various disciplines.</p>
+              </div>
+              <div class="news-footer">
+                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                <span class="news-category">Arts</span>
+              </div>
+            </div>
+
+            <div class="news-item">
+              <div class="news-image-container">
+                <img class="news-image" src="/images/blooddonation.jpg" alt="Blood Donation Camp Image">
+                <div class="news-image-overlay"></div>
+              </div>
+              <div class="news-content">
+                <h3 class="news-title">Blood Donation Camp</h3>
+                <span class="news-date"><i class="far fa-calendar-alt me-2"></i>Oct 8, 2023</span>
+                <p class="news-description">A blood donation camp will be held on campus next week. Students are encouraged to participate and donate blood.</p>
+              </div>
+              <div class="news-footer">
+                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                <span class="news-category">Health</span>
+              </div>
+            </div>
+          </div>
+
           <!-- Newsletter Section - Enhanced -->
           <div class="newsletter">
             <h3 class="newsletter-title">Subscribe to our newsletter</h3>
@@ -187,20 +214,13 @@
               <button type="submit" class="newsletter-button">Subscribe</button>
             </form>
           </div>
-          
-          <!-- Articles Section -->
-          <div id="articles-section" class="mt-4">
-            <h2 class="articles-title text-center">Latest Articles</h2>
-            <!-- The newsfeed.js script will load the article boxes into this container -->
-            <div id="news-feed"></div>
-          </div>
         </div>
       </div>
 
       <!-- Footer - Keeping the same -->
       <footer class="footer">
         <div class="footer-links">
-          <a href="components/about-us.html">About us</a>
+          <a href="/components/about-us.html">About us</a>
           <a href="#">Help Center</a>
           <a href="#">Contact us</a>
           <a href="/components/faqs.html">FAQs</a>
@@ -211,52 +231,15 @@
       </footer>
     </div>
 
-    <!-- Modal Container -->
-    <div id="modal" class="modal" style="display: none;">
-      <div id="modal-content" class="modal-content"></div>
-    </div>
-
     <!-- JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <!-- Include your newsfeed.js to load the articles from the database -->
-    <script src="js/newsfeed.js"></script>
-    <!-- Override openModal() for index.html to display title, image, and content, with a Close button -->
-    <script>
-      if (window.location.pathname.endsWith('index.html')) {
-        window.openModal = function(id) {
-          const modal = document.getElementById('modal');
-          const modalContent = document.getElementById('modal-content');
-          const articleElement = document.querySelector(`[data-id='${id}']`);
-          
-          // Retrieve title, content, and image URL from the article element
-          const currentTitle = articleElement.querySelector('.article-title').innerText;
-          const currentContent = articleElement.dataset.content;
-          const currentImageUrl = articleElement.dataset.imageurl;
-          
-          modalContent.innerHTML = `
-            <h2 id="modal-title">${currentTitle}</h2>
-            <img src="${currentImageUrl ? currentImageUrl : 'https://dummyimage.com/300x150/ccc/000&text=No+Image'}" alt="Article Image" class="modal-image" style="max-width:100%; height:auto; display:block; margin:0 auto;"/>
-            <p id="modal-text">${currentContent}</p>
-            <button id="close-modal-btn" class="close-btn">Close</button>
-          `;
-          
-          document.getElementById('close-modal-btn').addEventListener('click', function() {
-            modal.style.display = 'none';
-          });
-          
-          modal.style.display = 'flex';
-          modal.style.position = 'fixed';
-          modal.style.width = '100vx';
-          modal.style.height = '100vh';
-          modal.style.overflowY = 'auto';
-          modal.style.padding = '20px';
-        };
-      }
-    </script>
     <script>
       // Add animation to stats numbers
       document.addEventListener('DOMContentLoaded', function() {
+        // Animate stat numbers when they come into view
         const stats = document.querySelectorAll('.stat-number');
+        
+        // Simple animation when page loads
         setTimeout(() => {
           stats.forEach(stat => {
             stat.style.transform = 'scale(1.1)';
