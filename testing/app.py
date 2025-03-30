@@ -11,12 +11,22 @@ app = Flask(__name__)
 # Define the structure of courses by year, branch, and subjects
 course_structure = {
     "1": {  # First Year
-        "CMPN": ["Engineering Mathematics I", "Physics", "Chemistry"],
-        "IT": ["Engineering Mathematics I", "Physics", "Computing Basics"],
-        "EXTC": ["Engineering Mathematics I", "Physics", "Electronics Basics"]
+        "CMPN": ["Engineering Mathematics I", "Physics-I", "Chemistry-I", "BEE", "Mechanics", "C-Programming", "Chemistry-II", "Physics-II", "Engineering Mathematics II", "Engineering Graphics", "PCE"],
+        "IT": ["Engineering Mathematics I", "Physics-I", "Chemistry-I", "BEE", "Mechanics", "C-Programming", "Chemistry-II", "Physics-II", "Engineering Mathematics II", "Engineering Graphics", "PCE"],
+        "EXTC": ["Engineering Mathematics I", "Physics-I", "Chemistry-I", "BEE", "Mechanics", "C-Programming", "Chemistry-II", "Physics-II", "Engineering Mathematics II", "Engineering Graphics", "PCE"]
     },
     "2": {  # Second Year
-        "CMPN": ["Data Structures", "Digital Systems", "Computer Networks"],
+        "CMPN": ["Engineering Mathematics III","Data Structures", "DLCA", "Computer Graphics", "Engineering Mathematics IV", "DSGT", "AOA", "DBMS", "MP", "OS"],
+        "IT": ["Engineering Mathematics III", "Data Structures", "DBMS", "PCOM", "PCPF", "Engineering Mathematics IV", "CN", "OS", "COA", "AT"],
+        "EXTC": ["Engineering Mathematics III", "DSD", "EDC", "EICS", "NT", "Engineering Mathematics IV", "LIC", "Microcontroller", "PCOM", "SS"]
+    },
+    "3": {  # Third Year
+        "CMPN": ["CN", "DWM", "IP", "SE", "TCS", "AI", "CSS", "IOT", "MC", "SPCC"],
+        "IT": ["ADBMS", "CNS", "Entrpreneurship&R-Buisness", "IP", "SE", "AI&DS", "DM&BI", "WebXO", "Wireless Technology"],
+        "EXTC": ["Data Compression & Cryptography", "Digital Communication", "Digital VLSI", "Discrete Time Signal Processing", "IT Infra and Security", "Random Signal Analysis"]
+    },
+    "4": {  # Fourth Year
+        "CMPN": ["Big Data Analytic", "Blockchain", "Cybersecurity and Laws", "Machine Learning", "Management Information System", "Natural Language Processing"],
         "IT": ["Database Systems", "Web Technologies", "Operating Systems"],
         "EXTC": ["Analog Electronics", "Digital Communication", "Microcontrollers"]
     }
