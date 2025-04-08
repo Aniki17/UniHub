@@ -1,7 +1,7 @@
 # 🎓 UniHub
 
 <p align="center">
-  <img src="https://via.placeholder.com/150" alt="UniHub Logo" width="150" height="150">
+  <img src="/images/campusconnectlogowithouttext.png" alt="UniHub Logo" width="150" height="150">
 </p>
 
 <p align="center">
